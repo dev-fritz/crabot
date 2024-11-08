@@ -1,3 +1,3 @@
-mod database;
+pub mod database;
 mod payment;
 mod auth;
