@@ -3,6 +3,7 @@ mod model;
 mod service;
 mod repository;
 mod yamcha;
+mod utils;
 
 use dotenv::dotenv;
 use sqlx::Executor;
