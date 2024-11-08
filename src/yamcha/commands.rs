@@ -6,7 +6,7 @@ pub enum Command {
     #[command(description = "display this text.")]
     Help,
     #[command(description = "handle a username.")]
-    Username,
+    Contact,
     #[command(description = "handle a username and an age.", parse_with = "split")]
     UsernameAndAge { username: String, age: u8 },
 }
@@ -14,13 +14,13 @@ pub enum Command {
 pub async fn answer(bot: Bot, msg: Message, cmd: Command) -> ResponseResult<()> {
     match cmd {
         Command::Help => bot.send_message(msg.chat.id, Command::descriptions().to_string()).await?,
-        Command::Username => {
+        Command::Contact => {
             bot.send_message(
                 msg.chat.id,
-                match msg.chat.username() {
-                    Some(name) => format!("Your username is @{name}."),
-                    None => "You don't have a username.".to_string(),
-                }
+                format!("Github: {}\n\n Whatsapp: {}\n\n Email: {}",
+                        "https://www.github.com/dev-fritz",
+                        "https://wa.me/5595991561987",
+                        "fritzhenrique.dev@gmail.com")
             ).await?
         }
         Command::UsernameAndAge { username, age } => {
