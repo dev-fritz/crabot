@@ -5,10 +5,8 @@ use teloxide::{prelude::*, utils::command::BotCommands};
 pub enum Command {
     #[command(description = "display this text.")]
     Help,
-    #[command(description = "handle a username.")]
+    #[command(description = "Return adm bot contacts.")]
     Contact,
-    #[command(description = "handle a username and an age.", parse_with = "split")]
-    UsernameAndAge { username: String, age: u8 },
 }
 
 pub async fn answer(bot: Bot, msg: Message, cmd: Command) -> ResponseResult<()> {
@@ -22,11 +20,7 @@ pub async fn answer(bot: Bot, msg: Message, cmd: Command) -> ResponseResult<()> 
                         "https://wa.me/5595991561987",
                         "fritzhenrique.dev@gmail.com")
             ).await?
-        }
-        Command::UsernameAndAge { username, age } => {
-            bot.send_message(msg.chat.id, format!("Your username is @{username} and age is {age}."))
-                .await?
-        }
+        },
     };
 
     Ok(())
